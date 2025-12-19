@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Book Entity - TODO: Complete the annotations
@@ -38,6 +40,9 @@ public class Book {
     private boolean available = true;
 
     private LocalDateTime createdAt;
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    private List<Loan> loans = new ArrayList<>();
 
     // Default constructor required by JPA
     public Book() {
@@ -102,5 +107,13 @@ public class Book {
 
     public void setCreatedAt(LocalDateTime ca) {
         createdAt = ca;
+    }
+
+    public boolean addLoan(Loan l) {
+        return loans.add(l);
+    }
+
+    public boolean removeLoan(Loan l) {
+        return loans.remove(l);
     }
 }

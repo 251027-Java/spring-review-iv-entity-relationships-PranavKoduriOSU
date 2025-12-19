@@ -22,6 +22,16 @@ public class GlobalExceptionHandler {
          return buildErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
      }
 
+    @ExceptionHandler(PatronNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handlePatronNotFound(PatronNotFoundException ex) {
+        return buildErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(LoanNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleLoanNotFound(LoanNotFoundException ex) {
+        return buildErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
     // TODO: Handle BookNotAvailableException
      @ExceptionHandler(BookNotAvailableException.class)
      public ResponseEntity<Map<String, Object>> handleBookNotAvailable(BookNotAvailableException ex) {

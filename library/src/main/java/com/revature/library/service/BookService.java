@@ -45,15 +45,14 @@ public class BookService {
         if (!book.getAvailable()) throw new BookNotAvailableException(String.format("Book ID=%d not available.", bookId));
         book.setAvailable(false);
 
-        repo.save(book);
-        return book;
+        return repo.save(book);
     }
 
     public Book returnBook(Long bookId) {
         // TODO: Find book, set available = true, save and return
         Book book = repo.findById(bookId).orElseThrow(() -> new BookNotFoundException(String.format("Book ID=%d not found.", bookId)));
         book.setAvailable(true);
-        repo.save(book);
-        return book;
+
+        return repo.save(book);
     }
 }
